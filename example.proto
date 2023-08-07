@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package example;
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+import "validate/validate.proto";
+
+option go_package = "github.com/gulteking/grpc-gateway-example";
+
+service Example {
+  rpc Hello(HelloRequest) returns (HelloResponse) {
+    option(google.api.http) = {
+      post: "/example/hello"
+      body: "*"
+    };
+  }
+
+}
+
+
+message HelloRequest {
+  string name = 1 [(validate.rules).string = {min_len: 3, max_len: 50}];
+  optional string email = 2 [(validate.rules).string.email = true];
+
+}
+
+message HelloResponse {
+  string message = 1;
+}

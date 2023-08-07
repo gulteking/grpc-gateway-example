@@ -1,0 +1,8 @@
+version: v1
+name: buf.build/gulteking/grpc-gateway-example
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/envoyproxy/protoc-gen-validate
+build:
+  excludes:
+    - vendor
